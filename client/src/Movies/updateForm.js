@@ -10,7 +10,7 @@ const initialItem = {
   actors: "",
 };
 
-const updateForm = (props) => {
+const UpdateForm = (props) => {
   const [item, setItem] = useState(initialItem);
   const { id } = useParams();
   const { push } = useHistory();
@@ -20,7 +20,7 @@ const updateForm = (props) => {
       .get(`http://localhost:5000/api/movies/${id}`)
       .then((res) => setItem(res.data))
       .catch((err) => console.error("err", err.message, err.res));
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -83,4 +83,4 @@ const updateForm = (props) => {
   );
 };
 
-export default updateForm;
+export default UpdateForm;
