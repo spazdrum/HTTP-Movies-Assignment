@@ -7,7 +7,7 @@ const initialItem = {
   title: "",
   director: "",
   metascore: "",
-  actors: "",
+  actors: [],
 };
 
 const UpdateForm = (props) => {
@@ -38,7 +38,9 @@ const UpdateForm = (props) => {
     axios
       .put(`http://localhost:5000/api/movies/${id}`, item)
       .then((res) => {
-        push(`/movies/${id}`);
+        props.setItem(res.data);
+        props.getMovieList();
+        push(`/`);
       })
       .catch((err) => {
         console.error(err.message, err.res);
@@ -57,27 +59,27 @@ const UpdateForm = (props) => {
           value={item.value}
         />
         <input
-            type='text'
-            name='director'
-            onChange={handleChange}
-            placeholder='Director'
-            value={item.director}
+          type="text"
+          name="director"
+          onChange={handleChange}
+          placeholder="Director"
+          value={item.director}
         />
         <input
-            type='number'
-            name='metascore'
-            onChange={handleChange}
-            placeholder='Metascore'
-            value={item.metascore}
+          type="number"
+          name="metascore"
+          onChange={handleChange}
+          placeholder="Metascore"
+          value={item.metascore}
         />
         <input
-            type='text'
-            name='actors'
-            onChange={handleChange}
-            placeholder='Actors'
-            value={item.actors}
+          type="text"
+          name="actors"
+          onChange={handleChange}
+          placeholder="Actors"
+          value={item.stars}
         />
-        <button className='form-btn'>Update</button>
+        <button className="form-btn">Update</button>
       </form>
     </div>
   );
